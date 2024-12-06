@@ -1,3 +1,4 @@
+#include <chrono>
 #include <iostream>
 #include <random>
 
@@ -26,6 +27,10 @@ float calculate_pi(int simulation_count) {
 }
 
 auto main() -> int {
+    auto start = std::chrono::high_resolution_clock::now();
     auto pi = calculate_pi(1'000'000);
+    auto end = std::chrono::high_resolution_clock::now();
+    auto duration = end - start;
     std::cout << "Pi estimate: " << pi << '\n';
+    std::cout << "Execution time (ms): " << std::chrono::duration_cast<std::chrono::milliseconds>(duration).count() << '\n';
 }
